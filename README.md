@@ -102,11 +102,11 @@ Forensic Safety:
 ## Artifact Handling & Scope
 
 - This toolkit focuses on **forensic-safe artifact collection** during
-live incident response.
+  live incident response.
 - Artifacts such as **Prefetch files** are collected intact and are
-intended to be **parsed offline** using dedicated forensic tools.
+  intended to be **parsed offline** using dedicated forensic tools.
 - Live parsing on compromised hosts is intentionally avoided to
-preserve evidence integrity.
+  preserve evidence integrity.
 
 
 MITRE ATT&CK Coverage:
