@@ -28,6 +28,7 @@ The primary goal of this toolkit is to:
 - Covers major Windows attack surfaces
 - Modular and easy to extend
 - MITRE ATT&CK aligned
+- Prefetch artifact collection for execution evidence (offline parsing recommended)
 
 ----------------------------------------------------------------------------------------------------
 
@@ -44,25 +45,39 @@ Each script generates:
 
 ## Toolkit Structure
 
-scripts/
-├── network
-│ ├── ARP_Entries.ps1
-│ ├── Network_Connections.ps1
-│ └── DNS_Cache.ps1
-├── execution
-│ └── Running_Processes.ps1
-├── persistence
-│ ├── Scheduled_Tasks.ps1
-│ ├── Windows_Services.ps1
-│ ├── Registry_RunKeys.ps1
-│ ├── Startup_Folder.ps1
-│ └── WMI_Persistence.ps1
-├── privilege
-│ └── Local_Users_Groups.ps1
-├── defense_evasion
-│ └── Firewall_Rules.ps1
-└── correlation
-└── Autoruns_Master_Summary.ps1
+Windows-dfir-toolkit/
+├── scripts/
+│   ├── host/
+│   │   └── System_Info.ps1
+│   │
+│   ├── execution/
+│   │   ├── Running_Processes.ps1
+│   │   └── Collect_Prefetch.ps1
+│   │
+│   ├── persistence/
+│   │   ├── Scheduled_Tasks.ps1
+│   │   ├── Windows_Services.ps1
+│   │   ├── Registry_RunKeys.ps1
+│   │   ├── Startup_Folder.ps1
+│   │   └── WMI_Persistence.ps1
+│   │
+│   ├── privilege/
+│   │   └── Local_Users_Groups.ps1
+│   │
+│   ├── defense_evasion/
+│   │   └── Firewall_Rules.ps1
+│   │
+│   ├── network/
+│   │   ├── Network_Connections.ps1
+│   │   ├── ARP_Entries.ps1
+│   │   └── DNS_Cache.ps1
+│   │
+│   └── correlation/
+│       └── Autoruns_Master_Summary.ps1
+│
+├── README.md
+├── LICENSE
+
 
 ----------------------------------------------------------------------------------------------------
 
@@ -83,6 +98,16 @@ Forensic Safety:
 - All scripts are read-only
 - No registry modification, file deletion, or process termination
 - Safe to execute during live incident response
+
+## Artifact Handling & Scope
+
+- This toolkit focuses on **forensic-safe artifact collection** during
+live incident response.
+- Artifacts such as **Prefetch files** are collected intact and are
+intended to be **parsed offline** using dedicated forensic tools.
+- Live parsing on compromised hosts is intentionally avoided to
+preserve evidence integrity.
+
 
 MITRE ATT&CK Coverage:
 The toolkit covers multiple MITRE ATT&CK techniques including:
