@@ -1,33 +1,48 @@
 # Windows DFIR Toolkit
 
-An enterprise-grade, forensic-safe Windows Incident Response toolkit
-designed for live response and offline forensic analysis.
+An enterprise-grade, forensic-safe Windows Incident Response (DFIR) toolkit
+designed to assist security teams during live response and post-incident
+investigations.
 
-This toolkit helps DFIR analysts collect high-value forensic artifacts
-related to execution, persistence, network activity, privilege abuse,
-and defense evasion.
+This toolkit focuses on collecting high-value forensic artifacts related to
+process execution, persistence mechanisms, network activity, privilege abuse,
+and defense evasion, while maintaining forensic integrity.
 
---------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
-## Features
-- Read-only and forensic-safe scripts
-- JSON output for automation and SIEM ingestion
-- SHA256 hashing for evidence integrity
+## Purpose
+
+The primary goal of this toolkit is to:
+- Support **live incident response**
+- Enable **offline forensic analysis**
+- Provide **structured evidence** suitable for SOC, DFIR, and threat-hunting teams
+- Maintain **forensic safety** (read-only operations)
+
+----------------------------------------------------------------------------------------------------
+
+## Key Features
+
+- Forensic-safe (read-only, no system modification)
+- Structured **JSON output** for automation and SIEM ingestion
+- **SHA256 hashing** for evidence integrity verification
 - Covers major Windows attack surfaces
+- Modular and easy to extend
 - MITRE ATT&CK aligned
 
----------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 ## Output Location
-All artifacts are saved to:
 
-C:\IR_Collection\
+All artifacts are collected and stored in: C:\IR_Collection\
 
-Each artifact includes a corresponding SHA256 hash file.
+Each script generates:
+- A JSON evidence file
+- A corresponding SHA256 hash file
+- An execution log (where applicable)
+  
+----------------------------------------------------------------------------------------------------
 
----------------------------------------------------------------------
-
-## Folder Structure
+## Toolkit Structure
 
 scripts/
 ├── network
@@ -49,19 +64,40 @@ scripts/
 └── correlation
 └── Autoruns_Master_Summary.ps1
 
-------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
 
 ## Usage
 
-Run scripts individually based on investigation needs:
+Run individual scripts based on investigation requirements.
+
+Example:
 
 ```powershell
 .\Running_Processes.ps1
 .\Network_Connections.ps1
 .\Registry_RunKeys.ps1
 
--- Administrator privileges are recommended for full visibility.
+Administrator privileges are recommended for full visibility.
 
-------------------------------------------------------------------
+Forensic Safety:
+- All scripts are read-only
+- No registry modification, file deletion, or process termination
+- Safe to execute during live incident response
+
+MITRE ATT&CK Coverage:
+The toolkit covers multiple MITRE ATT&CK techniques including:
+1. Execution
+2. Persistence
+3. Privilege Escalation
+4. Defense Evasion
+5. Command and Control
+6. Each script documents relevant ATT&CK mappings internally.
 
 Author: Subash J
+DFIR | Incident Response | Threat Hunting
+
+⚠️ Disclaimer
+This toolkit is intended for authorized security investigations only.
+The author is not responsible for misuse or unauthorized deployment.
+
+----------------------------------------------------------------------------------------------------
